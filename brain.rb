@@ -4,14 +4,27 @@
 class Brain < Formula
   desc "Beautiful notes in your terminal."
   homepage "https://github.com/sno6/brain"
-  url "https://github.com/sno6/brain/releases/download/v0.0.1/brain-amd64"
   sha256 "6140e07ae5dcf370e2dc1d41596edf100c2122b4ddc30567b79e35421abad7c6"
   license ""
 
   # depends_on "cmake" => :build
 
+  on_macos do
+    if Hardware::CPU.arm?
+      url "https://github.com/sno6/brain/releases/download/v0.0.1/brain-arm64"
+    else
+      url "https://github.com/sno6/brain/releases/download/v0.0.1/brain-amd64"
+    end
+  end
+
   def install
-	bin.install 'brain-amd64'
+    on_macos do
+      if Hardware::CPU.arm?
+        bin.install "brain-arm64" => "brain"
+      else
+    	  bin.install "brain-amd64" => "brain"
+      end
+    end
   end
 
   test do
