@@ -17,12 +17,28 @@ class Brain < Formula
     end
   end
 
+  on_linux do
+    if Hardware::CPU.arm?
+      url "https://github.com/sno6/brain/releases/download/v0.0.3/brain-linux-arm64"
+    else
+      url "https://github.com/sno6/brain/releases/download/v0.0.3/brain-linux-amd64"
+    end
+  end
+
   def install
     on_macos do
       if Hardware::CPU.arm?
         bin.install "brain-arm64" => "brain"
       else
     	  bin.install "brain-amd64" => "brain"
+      end
+    end
+
+    on_linux do
+      if Hardware::CPU.arm?
+        bin.install "brain-linux-arm64" => "brain"
+      else
+        bin.install "brain-linux-amd64" => "brain"
       end
     end
   end
