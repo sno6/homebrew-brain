@@ -11,9 +11,9 @@ class Brain < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/sno6/brain/releases/download/v0.0.1/brain-arm64"
+      url "https://github.com/sno6/brain/releases/download/v0.0.3/brain-arm64"
     else
-      url "https://github.com/sno6/brain/releases/download/v0.0.1/brain-amd64"
+      url "https://github.com/sno6/brain/releases/download/v0.0.3/brain-amd64"
     end
   end
 
